@@ -17,6 +17,8 @@ else
 fi
 mkdir -p $HOME/.config && echo "command_timeout = 2000" > $HOME/.config/starship.toml
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
+# FORCE to use original .zshrc
 wget https://raw.githubusercontent.com/MasaYan24/zshrc/main/.zshrc -P $HOME/
 
 # Developing tool
