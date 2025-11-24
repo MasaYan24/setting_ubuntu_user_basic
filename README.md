@@ -1,95 +1,51 @@
-# Ubuntu settings
+# Ubuntu settings for basic local user
 
-# Execution
+## Execution
 Download repository:
 ```sh
-git clone https://github.com/MasaYan24/base_ubuntu_user.git
+git clone https://github.com/MasaYan24/setting_ubuntu_user_basic.git
 ```
 Then execute
 ```sh
-cd base_ubuntu_user
+cd setting_ubuntu_user_basic
 sh install.sh
 ```
 
-Or execute following steps one by one.
+Or execute the following steps one by one.
 
-# Install shell and basic utilities
+## Manual installation
+
+### use template .zshrc
 ```sh
-sudo apt install -y zsh unzip ruby openssh-server
-sudo apt install -y gcc make pkg-config libglvnd-dev  # for NVIDIA driver
-sudo chsh -s /bin/zsh $(whoami)
+wget https://raw.githubusercontent.com/MasaYan24/zshrc/main/.zshrc -P $HOME/
 ```
 
-# Install developping tools
+### setup shell prompt
 ```sh
-sudo apt install -y make g++
-sudo apt install -y neovim
-sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
+if command -v brew >/dev/null 2>&1; then
+    brew install starship
+else
+    wget https://starship.rs/install.sh -O $workdir/starship_install.sh
+    sh $workdir/starship_install.sh -b $HOME/bin -y
+fi
+mkdir -p $HOME/.config && echo "command_timeout = 2000" > $HOME/.config/starship.toml
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-sudo apt install -y ruby
+```
+
+### environment tool
+```sh
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
     -O /tmp/miniconda.sh && sh /tmp/miniconda.sh -b -p $HOME/miniconda
 $HOME/.miniconda/bin/conda --add channels conda-forge
 $HOME/.miniconda/bin/conda --remove channels defaults
 $HOME/.miniconda/bin/conda --show channels
-
-
-sudo apt install -y imagemagick
-git clone https://github.com/stefanhaustein/TerminalImageViewer.git /tmp/TIV \
-    && cd /tmp/TIV/src/main/cpp \
-    && make \
-    && sudo make install
 ```
-
-# Set .zshrc
-Download **.zshrc** from https://github.com/MasaYan24/zshrc
+Add path to it.
 ```sh
-wget https://raw.githubusercontent.com/MasaYan24/zshrc/main/.zshrc -P $HOME/
+echo 'export PATH=$HOME/.miniconda/bin:$PATH' >> $HOME/.zshrc
 ```
 
-Example:
-```sh
-  
-# Path
-PATH=~/bin:$PATH
-
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-
-# History
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-# Use modern completion system
-autoload -Uz compinit
-compinit
-
-# starship hook
-eval "$(starship init zsh)"
-
-# miniconda hook
-eval "$($HOME/miniconda/bin/conda shell.zsh hook)"
-
-# zsh-autosuggestions hook
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Alias
-alias vi='nvim'
-alias ls="ls --color"
-```
-
-# Setting for .vimrc
-```sh
-git clone https://github.com/MasaYan24/.vim.git
-$HOME/.vim/install.sh
-```
-Execute following if necessary when opening nvim
-```vim
-:UpdateRemotePlugins
-```
-
-# git setting
+### git setting
 ```sh
 git config --global core.editor vi
 git config --global merge.tool vimdiff
