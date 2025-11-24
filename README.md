@@ -8,6 +8,16 @@ cd setting_ubuntu_user_basic
 sh install.sh
 ```
 
+### Note
+If your computer is under a proxy, execute the following before executing the setup script.
+```sh
+# modify the IP and port number
+export http_proxy="http://your/proxy/IP:PortNumber"
+export https_proxy="http://your/proxy/IP:PortNumber"
+export ftp_proxy="http://your/proxy/IP:PortNumber"
+```
+The above commands have to be executed every time you restart the shell.
+
 Or execute the following steps one by one.
 
 ## Manual installation
