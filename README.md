@@ -4,9 +4,6 @@
 Download repository:
 ```sh
 git clone https://github.com/MasaYan24/setting_ubuntu_user_basic.git
-```
-Then execute
-```sh
 cd setting_ubuntu_user_basic
 sh install.sh
 ```
