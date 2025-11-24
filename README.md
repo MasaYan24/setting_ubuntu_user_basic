@@ -11,7 +11,7 @@ sh install.sh
 ### Note
 If your computer is under a proxy, execute the following before executing the setup script.
 ```sh
-# modify the IP and port number
+# modify the IP address and port number
 export http_proxy="http://your/proxy/IP:PortNumber"
 export https_proxy="http://your/proxy/IP:PortNumber"
 export ftp_proxy="http://your/proxy/IP:PortNumber"
