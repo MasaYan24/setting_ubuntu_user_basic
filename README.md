@@ -41,11 +41,13 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 
 ### environment tool
 ```sh
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    -O /tmp/miniconda.sh && sh /tmp/miniconda.sh -b -p $HOME/miniconda
-$HOME/.miniconda/bin/conda config --add channels conda-forge
-$HOME/.miniconda/bin/conda config --remove channels defaults
-$HOME/.miniconda/bin/conda config --show channels
+installer=$workdir/miniforge_install.sh
+install_dir=$HOME/.miniconda
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" -O $installer \
+    && bash $installer -b -p $install_dir
+$install_dir/bin/conda config --set auto_activate False
+$install_dir/bin/conda config --show channels
+$install_dir/bin/conda init zsh  
 ```
 Add path to it.
 ```sh
