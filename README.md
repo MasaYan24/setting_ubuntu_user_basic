@@ -43,9 +43,9 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 ```sh
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
     -O /tmp/miniconda.sh && sh /tmp/miniconda.sh -b -p $HOME/miniconda
-$HOME/.miniconda/bin/conda --add channels conda-forge
-$HOME/.miniconda/bin/conda --remove channels defaults
-$HOME/.miniconda/bin/conda --show channels
+$HOME/.miniconda/bin/conda config --add channels conda-forge
+$HOME/.miniconda/bin/conda config --remove channels defaults
+$HOME/.miniconda/bin/conda config --show channels
 ```
 Add path to it.
 ```sh
